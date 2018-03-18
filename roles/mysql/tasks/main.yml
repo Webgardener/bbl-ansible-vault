@@ -10,15 +10,13 @@
   notify:
     - restart mysql
     
-- name: Generate random password for MySQL root user
-  shell: apg -a 1 -n 1 -m 24 -x 24 -M NCL
-  register: mysql_root_password
-  no_log: True
-    
+- debug:
+    msg: "this is a debug message to illustrate Ansible-vault : mysql password is {{ mysql_root_password }}"
+
 - name: Setup MySQL root password
   mysql_user:
     name: "root"
-    password: "{{ mysql_root_password.stdout }}"
+    password: "{{ mysql_root_password }}"
     host: "{{ item }}"
     state: present
   with_items:

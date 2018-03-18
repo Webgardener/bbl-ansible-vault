@@ -1,5 +1,5 @@
-[virtualpress]
+[vagrant]
 localhost       ansible_connection=local
 
-[virtualpress:vars]
+[vagrant:vars]
 ansible_python_interpreter=/usr/bin/python3

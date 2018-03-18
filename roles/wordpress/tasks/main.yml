@@ -28,26 +28,21 @@
     encoding: utf8mb4
     collation: utf8mb4_unicode_ci
 
-- name: Generate random password for WordPress MySQL user
-  shell: apg -a 1 -n 1 -m 24 -x 24 -M NCL
-  register: wp_db_password
-  no_log: True
-
 - name: Create WordPress MySQL user
   mysql_user:
-    name: wordpress
-    password: "{{ wp_db_password.stdout }}"
+    name: "{{ wp_db_user_name }}"
+    password: "{{ wp_db_user_password }}"
     state: present
     priv: "wordpress.*:ALL"
     update_password: always
     
 - name: Generate wp-config.php
-  shell: wp config create --dbname=wordpress --dbuser=wordpress --dbpass={{ wp_db_password.stdout }} --dbcharset=utf8mb4 --dbcollate=utf8mb4_unicode_ci --locale=en_US --extra-php --force
+  shell: wp config create --dbname=wordpress --dbuser={{ wp_db_user_name }} --dbpass={{ wp_db_user_password }} --dbcharset=utf8mb4 --dbcollate=utf8mb4_unicode_ci --locale=en_US --extra-php --force
   become: true
   become_method: sudo
   become_user: www-data
   args:
     chdir: /vagrant/wordpress
     stdin: |
-      define( 'WP_DEBUG', true );
+      define( 'WP_DEBUG', {{ wp_debug_value }} );
       define( 'SAVEQUERIES', true );

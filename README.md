@@ -1,6 +1,6 @@
 # POC ANSIBLE-VAULT
 
-Let's see how ansible-vault works. 
+Let's see how ansible-vault works.
 
 ## Definition of Ansible-Vault
 
@@ -17,7 +17,7 @@ To make use of these files, you'll need to have the following prerequisites inst
 
 ## What we gonna do ?
 
-Together with the prerequisites listed above, the scripts contained herein will let you create a new VM with a simple `vagrant up` that install a running instance of Wordpress using Ansible-vault to define passwords. 
+Together with the prerequisites listed above, the scripts contained herein will let you create a new VM with a simple `vagrant up` that install a running instance of Wordpress using Ansible-vault to encrypt passwords.
 
 The purpose of this POC is to see ansible-vault in action but once the box is provisioned, feel free to go to 192.168.50.50 in your browser to begin the famous WordPress 5-minute install ^^
 
@@ -25,7 +25,7 @@ The purpose of this POC is to see ansible-vault in action but once the box is pr
 
 To begin, create an empty directory and clone the files in this repository into it.
 
-Then create a `group_vars` directory and a `group_vars/vagrant` sub-directory. 
+Then create a `group_vars` directory and a `group_vars/vagrant` sub-directory.
 Cd in the vagrant subdirectory and create a `vars.yml` and a `vault.yml` files:
 
 ```
@@ -41,17 +41,17 @@ $ ansible-vault create vault.yml
  
  mysql_root_password: my_salted_passwd_for_vagrant_env
  
- wp_db_user_name: sief
+ wp_db_user_name: my_beautiful_name
  wp_db_user_password: my_salted_mysql_user_db_pass
 
 #save and exit vim...
 ```
 
-After providing a password, the tool will launch whatever editor you have defined with $EDITOR, and defaults to vi. 
+After providing a password, the tool will launch whatever editor you have defined with $EDITOR, and defaults to vi.
 Once you are done with the editor session, the file will be saved as encrypted data. The default cipher is [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
 
 
-Cd into the root directory and run the command `vagrant up --no-provision`, and your VM should bootstrap itself into existence, ready to work with. 
+Cd into the root directory and run the command `vagrant up --no-provision`, and your VM should bootstrap itself into existence, ready to work with.
 
 Then ssh to your VM using `vagrant ssh` and run the following command :
 
@@ -67,10 +67,10 @@ Let's add the `--ask-vault-pass` cli option to the ansible-playbook command:
 
 ```
 $ ansible-playbook --inventory-file=virtualpress-inventory -v --ask-vault-pass setup.yml
-# enter your key 
+# enter your vault password
 ```
 
-Ta da! The provisioning can begin. 
+Ta da! The provisioning can begin.
 
 ## Ansible Vault in a CD context
 
@@ -86,6 +86,14 @@ Prior to Ansible 2.4
 ```
 $ ansible-playbook --vault-password-file dev-password site.yml
 ```
+
+## Encrypting Unencrypted Files
+
+```
+$ ansible-vault encrypt externals_vars_qualif.yml
+```
+
+Just as simple...
 
 ## Resources
 

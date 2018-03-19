@@ -1,5 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+$script = <<SCRIPT
+sudo apt-get install -y python-pip python-dev build-essential
+sudo pip install --upgrade pip
+sudo pip install --upgrade ansible==2.4
+SCRIPT
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -8,10 +13,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network :private_network, ip: "192.168.50.50"
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.install = "true"
-    ansible.install_mode = "pip"
-  end
+  config.vm.provision "shell", inline: $script
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]

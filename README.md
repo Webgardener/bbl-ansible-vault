@@ -59,7 +59,7 @@ Then ssh to your VM using `vagrant ssh` and run the following command :
 $ cd /vagrant
 $ ansible-playbook --inventory-file=virtualpress-inventory -v setup.yml
 ```
-Oups ! Ansible cannot decipher the encrypted file... Which is completely normal since we have not provided the key. 
+Oups ! Ansible cannot decipher the encrypted file... Which is completely normal since we have not provided the password. 
 
 ![error key](error-key.png)
 

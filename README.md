@@ -51,7 +51,7 @@ After providing a password, the tool will launch whatever editor you have define
 Once you are done with the editor session, the file will be saved as encrypted data. The default cipher is [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
 
 
-Cd into the root directory and run the command `vagrant up --no-provision`, and your VM should bootstrap itself into existence, ready to work with.
+Cd into the root directory and run the command `vagrant up`, and your VM should bootstrap itself into existence, ready to work with.
 
 Then ssh to your VM using `vagrant ssh` and run the following command :
 

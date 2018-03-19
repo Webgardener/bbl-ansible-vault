@@ -11,10 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "ansible_local" do |ansible|
     ansible.install = "true"
     ansible.install_mode = "pip"
-    ansible.verbose = "v"
-    ansible.playbook = "setup.yml"
-    ansible.inventory_path = "virtualpress-inventory"
-    ansible.limit = "all"
   end
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]

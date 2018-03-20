@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 $script = <<SCRIPT
-sudo apt-get install -y python-pip python-dev build-essential
+sudo apt-get install -y python-minimal python-pip python-dev build-essential
 sudo pip install --upgrade pip
 sudo pip install --upgrade ansible==2.4
 SCRIPT

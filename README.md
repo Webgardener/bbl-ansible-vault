@@ -12,7 +12,6 @@ To make use of these files, you'll need to have the following prerequisites inst
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](http://www.vagrantup.com/)
-* Ansible 2.4
 
 
 ## What we gonna do ?

@@ -1,4 +1,4 @@
-# POC ANSIBLE-VAULT
+# BBL ANSIBLE-VAULT
 
 Let's see how ansible-vault works.
 
@@ -18,7 +18,7 @@ To make use of these files, you'll need to have the following prerequisites inst
 
 Together with the prerequisites listed above, the scripts contained herein will let you create a new VM with a simple `vagrant up` that install a running instance of Wordpress using Ansible-vault to encrypt passwords.
 
-The purpose of this POC is to see ansible-vault in action but once the box is provisioned, feel free to go to 192.168.50.50 in your browser to begin the famous WordPress 5-minute install ^^
+The purpose of this BBL is to see ansible-vault in action but once the box is provisioned, feel free to go to 192.168.50.50 in your browser to begin the famous WordPress 5-minute install ^^
 
 ## Getting Started
 
